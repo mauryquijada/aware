@@ -1,0 +1,53 @@
+package com.example.aware;
+
+public class Report {
+	
+	// Location data
+	double lat;
+	double lon;
+	
+	// Identifiers
+	String id;
+	String devId;
+	
+	// Time
+	long timestamp;
+	
+	// Description
+	String description;
+	
+	// JSON for O
+	
+	public Report()
+	{
+		lat = 0.0;
+		lon = 0.0;
+		timestamp = 0;
+		id = "";
+		devId = "";
+		description = "";
+	}
+	
+	public Report(double lat, double lon, long timestamp, String id, String devId, String description)
+	{
+		this.lat = lat;
+		this.lon = lon;
+		this.timestamp = timestamp;
+		this.id = id;
+		this.devId = devId;
+		this.description = description;
+	}
+	
+	public Report(String data)
+	{
+		Scanner 
+	}
+	
+	public String toString()
+	{
+		JSONObject
+		return lat + "," + lon + "|" + timestamp + "," + id + "," + devId + "," + description; 
+	}
+	
+	
+}
