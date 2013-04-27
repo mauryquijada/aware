@@ -14,16 +14,16 @@ var deviceLength = 0;
 		id: 
 		device: 
 		time: 
-		data: { photo, description }
+		data: string
 
 	device: 
 		id: 
 		location: [lat, lon]
 */
 
+// Returns distance in degrees (small-angle approximation)
 function distance(l1, l2) {
-	
-	return true;
+	return ((l1[0] - l2[0]) * (l1[0] - l2[0]) + (l1[1] - l2[1]) * (l1[1] - l2[1]));
 }
 
 function clean() {
@@ -91,15 +91,21 @@ http.createServer(function (req, res) {
 			// Add the report
 			else if (req.method == 'POST')
 				postData(function (report) {
-					if (!report)
+				
+					// Format is lat,long|extra-data-blah-blah-blah
+					var separator = report.indexOf('|');
+					var location = report.substr(0, separator).split(',').map(Number);
+					var data = report.substr(separator + 1);
+					if (!report || location.length != 2 || location.some(isNaN) || !data)
 						return r400('Invalid report');
 					
-					console.log(device + ': adding report (' + data + ')');
+					console.log(device + ': adding report (' + report + ')');
 					reports.push({
 						'id': device + Date.now(),
 						'time': Date.now(),
 						'device': device,
-						'data': JSON.parse(data)
+						'location': location,
+						'data': data
 					});
 					
 					return r200('Report successfully added');
