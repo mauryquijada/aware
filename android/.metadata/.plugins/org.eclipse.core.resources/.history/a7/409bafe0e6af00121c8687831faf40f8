@@ -16,8 +16,7 @@ import android.widget.ViewFlipper;
 
 public class MainActivity extends ListActivity implements OnClickListener{
 	
-	ViewFlipper flipper1;
-	ViewFlipper flipper2;
+	ViewFlipper flipper1, flipper2;
 	public ArrayList<HashMap<String,String>> list = 
 			new ArrayList<HashMap<String,String>>();
 
@@ -25,7 +24,7 @@ public class MainActivity extends ListActivity implements OnClickListener{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
-        flipper1 = (ViewFlipper) findViewById(R.id.viewFlipper1);
+        flipper1 = (ViewFlipper) findViewById(R.id.viewFlipper2);
 		flipper2 = (ViewFlipper) findViewById(R.id.viewFlipper2);
 		
 		SimpleAdapter adapter = new SimpleAdapter(
@@ -40,12 +39,7 @@ public class MainActivity extends ListActivity implements OnClickListener{
         setListAdapter(adapter);  
 	}
 	
-	public void onClick(View view)
-	{
-		// TODO Auto-generated method stub
-		flipper2.showNext();
-		
-	}
+	
 
 	private void populateList() {
     	HashMap<String,String> map = new HashMap<String,String>();
@@ -115,10 +109,19 @@ public class MainActivity extends ListActivity implements OnClickListener{
             		item.setTitle("List");
             	else
             		item.setTitle("Map");
+            
             case R.id.menu_report:
             	flipper1.showNext();
+           	
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
+
+
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		
+	}
 }
