@@ -18,11 +18,37 @@ public class MainActivity extends ListActivity implements OnClickListener{
 	
 	ViewFlipper flipper1;
 	ViewFlipper flipper2;
+	
+	AwareAPI aware;
 	public ArrayList<HashMap<String,String>> list = 
 			new ArrayList<HashMap<String,String>>();
 
 	
     public void onCreate(Bundle savedInstanceState) {
+    	String registrationId = "G";// registration id from Google Cloud Messaging
+    	String deviceId = "AlexP";
+		Location location = new Location(0.0,0.0);
+		
+		aware = new AwareAPI("http://www.bitsofpancake.com:7333", deviceId);
+		Device d = new Device(deviceId, registrationId, location);
+		aware.registerDevice(d);
+		
+		Report x = new Report(location, 0, null, deviceId, "He stole my kidney");
+		AwareAPI.ReportAddedCallback cb2 = new AwareAPI.ReportAddedCallback() {
+			public void handler() {
+				// This code will get called when the report is successfully added
+			}
+		};
+		aware.addReport(x, cb2); 
+		
+		x = new Report(location, 1, null, deviceId, "He stole my muffin");
+		cb2 = new AwareAPI.ReportAddedCallback() {
+			public void handler() {
+				// This code will get called when the report is successfully added
+			}
+		};
+		aware.addReport(x, cb2);
+		
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
         flipper1 = (ViewFlipper) findViewById(R.id.viewFlipper1);
