@@ -1,5 +1,8 @@
 package com.aware.aware;
 
+import android.provider.Settings.Secure;
+import android.content.SharedPreferences;
+import com.google.android.gcm.GCMRegistrar;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -14,22 +17,47 @@ import android.view.View.OnClickListener;
 import android.widget.SimpleAdapter;
 import android.widget.ViewFlipper;
 
-public class MainActivity extends ListActivity implements OnClickListener{
+public class MainActivity extends ListActivity implements OnClickListener {
 	
 	ViewFlipper flipper1;
 	ViewFlipper flipper2;
 	
 	AwareAPI aware;
 	ReportStore reports;
-
 	
     public void onCreate(Bundle savedInstanceState) {
-    	String registrationId = "G";// registration id from Google Cloud Messaging
-    	String deviceId = "AlexP";
-		Location location = new Location(0.0,0.0);
+	
+		// Load GCM
+		String registrationId = "";
+		try {
+			GCMRegistrar.checkDevice(this);
+			GCMRegistrar.checkManifest(this);
+			registrationId = GCMRegistrar.getRegistrationId(this);
+		} catch (UnsupportedOperationException e) {
+			
+		}
 		
+		// Subscribe to GCM updates
+		if (registrationId.equals(""))
+			GCMRegistrar.register(this, "54748435983");
+		
+		// Device ID
+		SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+		String deviceId = pref.getString("deviceId", null);
+		if (deviceId == null) {
+			deviceId = Secure.getString(getContentResolver(), Secure.ANDROID_ID);
+			
+			SharedPreferences.Editor editor = pref.edit();
+			editor.putString("deviceId", deviceId);
+			editor.commit();
+		}
+		
+		// Load the API
 		aware = new AwareAPI("http://www.bitsofpancake.com:7333", deviceId);
-		Device d = new Device(deviceId, registrationId, location); 
+		
+		// Register the device
+		Location location = new Location(0.0, 0.0);
+		Device d = new Device(deviceId, registrationId, location);
 		aware.registerDevice(d);
 		
 		AwareAPI.ReportsCallback cb = new AwareAPI.ReportsCallback() {
@@ -37,7 +65,7 @@ public class MainActivity extends ListActivity implements OnClickListener{
 				
 				
 			}
-		};		
+		};
 		reports = new ReportStore(aware, cb, this);
 		
 		// test code below
@@ -61,17 +89,6 @@ public class MainActivity extends ListActivity implements OnClickListener{
         setContentView(R.layout.main_layout);
         flipper1 = (ViewFlipper) findViewById(R.id.viewFlipper1);
 		flipper2 = (ViewFlipper) findViewById(R.id.viewFlipper2);
-		
-		SimpleAdapter adapter = new SimpleAdapter(
-        	this,
-        	list,
-        	R.layout.crowview,
-        	new String[] {"description","time"},
-        	new int[] {R.id.list_element_description,R.id.list_element_time}
-        );     
-        populateList();
-        
-        setListAdapter(adapter);  
 	}
 	
 	public void onClick(View view)
@@ -81,17 +98,6 @@ public class MainActivity extends ListActivity implements OnClickListener{
 		
 	}
 
-	private void populateList() {
-    	
-    	AwareAPI.ReportsCallback cb1 = new AwareAPI.ReportsCallback() {
-    		
-			public void handler(Reports reports) {
-				// TODO Auto-generated method stub
-				
-			}
-    	};
-    	aware.requestReports(cb1);
-    	}
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main, menu);
