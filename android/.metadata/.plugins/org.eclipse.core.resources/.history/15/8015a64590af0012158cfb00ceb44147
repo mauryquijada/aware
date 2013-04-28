@@ -1,7 +1,0 @@
-package com.example.aware;
-
-import android.app.ListActivity;
-
-public class ListView extends ListActivity {
-
-}
