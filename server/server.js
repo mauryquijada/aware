@@ -14,12 +14,15 @@ var deviceLength = 0;
 		id: 
 		device: 
 		time: 
-		data: string
 
 	device: 
 		id: 
 		location: [lat, lon]
 */
+
+function isValidLocation(location) {
+	return location && location.length == 2 && typeof location[0] == 'number' && typeof location[1] == 'number';
+}
 
 // Returns distance in degrees (small-angle approximation)
 function distance(l1, l2) {
@@ -42,6 +45,7 @@ function clean() {
 }
 
 http.createServer(function (req, res) {
+	console.log('request ' + req.url);
 
 	function r400(err) {
 		console.log('400 ' + err);
@@ -62,11 +66,11 @@ http.createServer(function (req, res) {
         });
 	}
 
-	// Nope.
-	if (!message.headers['Device'])
+	// No device given.
+	if (!req.headers['Device'])
 		return r400('No device ID!');
-	
-	var device = message.headers['Device'];
+
+	var deviceId = message.headers['Device'];
 	
 	// Clean up stale data with a certain probability
 	if (Math.random() < 1 / deviceLength)
@@ -76,62 +80,65 @@ http.createServer(function (req, res) {
 		case '/report':
 		
 			// Need to be a valid user if requesting reports
-			if (devices[device])
+			if (devices[deviceId])
 				return r400('Unregistered device ID.');
 				
 			// List the reports
 			if (req.method == 'GET') {
-				console.log(device + ': listing report');
-				r200(JSON.stringify(reports.filter(function (report) {
-					return distance(report['location'], devices[device]['location']) < settings['location_threshold_general'];
-					// TODO: remove sensitive information
+				console.log(deviceId + ': listing report');
+				return r200(JSON.stringify(reports.filter(function (report) {
+					return distance(report['location'], devices[deviceId]['location']) < settings['location_threshold_general'];
+					// TODO: remove sensitive information and filter by time
 				})));
 			}
 			
 			// Add the report
 			else if (req.method == 'POST')
-				postData(function (report) {
+				return postData(function (report) {
 				
-					// Format is lat,long|extra-data-blah-blah-blah
-					var separator = report.indexOf('|');
-					var location = report.substr(0, separator).split(',').map(Number);
-					var data = report.substr(separator + 1);
-					if (!report || location.length != 2 || location.some(isNaN) || !data)
+					try {
+						report = JSON.parse(report);
+					} catch (e) {
 						return r400('Invalid report');
+					}
 					
-					console.log(device + ': adding report (' + report + ')');
-					reports.push({
-						'id': device + Date.now(),
-						'time': Date.now(),
-						'device': device,
-						'location': location,
-						'data': data
-					});
+					if (!report.data || !isValidLocation(report.location))
+						return r400('Invalid report');
+						
+					report.id = deviceId + Date.now();
+					report.time = Date.now();
+					report.device = deviceId;
+					
+					console.log(deviceId + ': adding report', report);
+					reports.push(report);
 					
 					return r200('Report successfully added');
 				});
 			
-			break;
+			return;
 			
 		case '/device':
 			
-			// New client
-			postData(function (location) {
-				if (!report)
-					return r400('Invalid device registration');
-				
-				console.log(device + ': adding device');
-				if (!device[device])
-					deviceLength++;
+			// New device
+			if (req.method == 'POST')
+				return postData(function (device) {
+					try {
+						device = JSON.parse(device);
+					} catch (e) {
+						return r400('Invalid device');
+					}
 					
-				devices[device] = {
-					'id': device,
-					'location': location.split(',').map(Number)
-				};
-				return r200('Device successfully added');
-			});
-			
-			break;
+					if (!isValidLocation(device.location) || !device.registration_id)
+						return r400('Invalid device registration');
+					
+					console.log(deviceId + ': adding device', device);
+					if (!device[deviceId])
+						deviceLength++;
+						
+					devices[deviceId] = device;
+					return r200('Device successfully added');
+				});
+			return;
 			
 		default:
 			return r400('Command not found');
