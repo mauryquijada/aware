@@ -1,6 +1,18 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:id="@+id/menu_settings"
+    
+    
+      <item android:id="@+id/menu_toggle"
+        android:title="Map"
+        android:orderInCategory="2"
+        android:showAsAction="ifRoom|withText" />
+     
+     <item android:id="@+id/menu_settings"
         android:title="@string/menu_settings"
         android:orderInCategory="100"
         android:showAsAction="never" />
+     
+     <item android:id="@+id/menu_report"
+        android:title="REPORT"
+        android:orderInCategory="1"
+        android:showAsAction="ifRoom|withText" />
 </menu>

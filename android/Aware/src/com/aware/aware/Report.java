@@ -4,48 +4,32 @@ import org.json.*;
 
 public class Report {
 	
-	// Location data
+	String id = null; // Report ID
+	String device = null; // Device ID
+	long time = 0; // Timestamp
+	
 	Location location;
+	String description; // Descriptions
 	
-	// Identifiers
-	String id;
-	String device;
 	
-	// Time
-	long time;
-	
-	// Description
-	String description;
-	
-	// JSON for O
-	
-	public Report()
-	{
-		location = null;
-		time = 0;
-		id = "";
-		device = "";
-		description = "";
-	}
-	
-	public Report(Location location, long time, String id, String device, String description)
+	public Report(Location location, String description)
 	{
 		this.location = location;
-		this.time = time;
-		this.id = id;
-		this.device = device;
 		this.description = description;
 	}
 	
-	public Report(String data) throws JSONException
+	public Report(JSONObject json) throws JSONException
 	{
-		JSONObject json = new JSONObject(data);
-		
-		this.location = new Location(json.get("location"));
+		this.location = new Location((JSONArray) json.get("location"));
 		this.time = (long) json.getLong("time");
 		this.id = (String) json.get("id");
 		this.device = (String) json.getString("device");
 		this.description = (String) json.getString("description");
+	}
+	
+	public Report(String data) throws JSONException
+	{
+		this(new JSONObject(data));
 	}
 	
 	public String toString()
@@ -57,10 +41,7 @@ public class Report {
 			json.put("id", id);
 			json.put("device", device);
 			json.put("description", description);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (JSONException e) {}
 		
 		return json.toString();
 	}
