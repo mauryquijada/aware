@@ -4,36 +4,17 @@ import org.json.*;
 
 public class Report {
 	
-	// Location data
+	String id = null; // Report ID
+	String device = null; // Device ID
+	long time = 0; // Timestamp
+	
 	Location location;
+	String description; // Descriptions
 	
-	// Identifiers
-	String id;
-	String device;
 	
-	// Time
-	long time;
-	
-	// Description
-	String description;
-	
-	// JSON for O
-	
-	public Report()
-	{
-		location = null;
-		time = 0;
-		id = "";
-		device = "";
-		description = "";
-	}
-	
-	public Report(Location location, long time, String id, String device, String description)
+	public Report(Location location, String description)
 	{
 		this.location = location;
-		this.time = time;
-		this.id = id;
-		this.device = device;
 		this.description = description;
 	}
 	
@@ -60,10 +41,7 @@ public class Report {
 			json.put("id", id);
 			json.put("device", device);
 			json.put("description", description);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		} catch (JSONException e) {}
 		
 		return json.toString();
 	}
