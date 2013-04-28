@@ -1,12 +1,11 @@
 package com.aware.aware;
 
-
 import org.json.*;
 
 public class Report {
 	
 	// Location data
-	double location[];
+	Location location;
 	
 	// Identifiers
 	String id;
@@ -22,16 +21,16 @@ public class Report {
 	
 	public Report()
 	{
-		location = new double[] {0.0, 0.0};
+		location = null;
 		time = 0;
 		id = "";
 		device = "";
 		description = "";
 	}
 	
-	public Report(double[] location, long time, String id, String device, String description)
+	public Report(Location location, long time, String id, String device, String description)
 	{
-		this.location = location.clone();
+		this.location = location;
 		this.time = time;
 		this.id = id;
 		this.device = device;
@@ -42,7 +41,7 @@ public class Report {
 	{
 		JSONObject json = new JSONObject(data);
 		
-		this.location = (double[]) json.get("location");
+		this.location = new Location(json.get("location"));
 		this.time = (long) json.getLong("time");
 		this.id = (String) json.get("id");
 		this.device = (String) json.getString("device");
@@ -53,7 +52,7 @@ public class Report {
 	{
 		JSONObject json = new JSONObject();
 		try {
-			json.put("location", location);
+			json.put("location", location.toJSON());
 			json.put("time", time);
 			json.put("id", id);
 			json.put("device", device);
