@@ -23,11 +23,11 @@ public class ServerMessenger extends AsyncTask<ServerRequest, Integer, String> {
 		
 		try {
 			connection = (HttpURLConnection) (new URL(domain + "/" + request.verb)).openConnection();
-			connection.setDoOutput(true);
 			connection.setRequestProperty("Device", device);
 			connection.setRequestMethod(request.method);
 			
 			if (request.data != null) {
+				connection.setDoOutput(true);
 				OutputStream out = connection.getOutputStream();
 				out.write(request.data.getBytes());
 			}
