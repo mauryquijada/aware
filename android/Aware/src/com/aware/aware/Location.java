@@ -1,21 +1,24 @@
 package com.aware.aware;
 import org.json.*;
-import com.google.android.gms.maps.model.LatLng;
 
-public class Location extends LatLng {
+public class Location  {
+	
+	double lat;
+	double lon;
 	
 	public Location(double lat, double lon) {
-		super(lat, lon);
+		this.lat = lat;
+		this.lon = lon;
 	}
 	
-	public Location(JSONArray loc) {
-		super(loc.get(0), loc.get(1));
+	public Location(JSONArray loc) throws JSONException {
+		this(loc.getDouble(0), loc.getDouble(1));
 	}
 	
-	public JSONArray toJSON() {
+	public JSONArray toJSON() throws JSONException {
 		JSONArray arr = new JSONArray();
-		arr.put(latitude);
-		arr.put(longitude);
+		arr.put(lat);
+		arr.put(lon);
 		return arr;
 	}
 
