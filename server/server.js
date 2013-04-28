@@ -151,7 +151,8 @@ http.createServer(function (req, res) {
 	}
 }).listen(settings['port']);
 
-function notify(devices, report) {
+function notify(devices, report, time) {
+	var time = time || 2000;
 	https.get({
 		'hostname': 'android.googleapis.com',
 		'path': '/gcm/send',
@@ -161,9 +162,12 @@ function notify(devices, report) {
 			'Content-type': 'application/json'
 		}
 	}, function (res) {
-		res.on('data', function (data) {
-			console.log('Google says: ' + data);
-		});
+		// Exponential backoff.
+		if (res.statusCode >= 500) {
+			setTimeout(function () {
+				notify(devices, report, time * 2);
+			}, time);
+		}
 	}).end(JSON.stringify({
 		'registration_ids': devices,
 		'collapse_key': 'suspicious activity',
