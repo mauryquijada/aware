@@ -1,5 +1,8 @@
 package com.aware.aware;
 
+import android.provider.Settings.Secure;
+import android.content.SharedPreferences;
+import com.google.android.gcm.GCMRegistrar;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -14,26 +17,59 @@ import android.view.View.OnClickListener;
 import android.widget.SimpleAdapter;
 import android.widget.ViewFlipper;
 
-public class MainActivity extends ListActivity implements OnClickListener{
+public class MainActivity extends ListActivity implements OnClickListener {
 	
 	ViewFlipper flipper1;
 	ViewFlipper flipper2;
 	
 	AwareAPI aware;
-	public ArrayList<HashMap<String,String>> list = 
-			new ArrayList<HashMap<String,String>>();
-
+	ReportStore reports;
 	
     public void onCreate(Bundle savedInstanceState) {
-    	String registrationId = "G";// registration id from Google Cloud Messaging
-    	String deviceId = "AlexP";
-		Location location = new Location(0.0,0.0);
+	
+		// Load GCM
+		String registrationId = "";
+		try {
+			GCMRegistrar.checkDevice(this);
+			GCMRegistrar.checkManifest(this);
+			registrationId = GCMRegistrar.getRegistrationId(this);
+		} catch (UnsupportedOperationException e) {
+			
+		}
 		
+		// Subscribe to GCM updates
+		if (registrationId.equals(""))
+			GCMRegistrar.register(this, "54748435983");
+		
+		// Device ID
+		SharedPreferences pref = getSharedPreferences("pref", MODE_PRIVATE);
+		String deviceId = pref.getString("deviceId", null);
+		if (deviceId == null) {
+			deviceId = Secure.getString(getContentResolver(), Secure.ANDROID_ID);
+			
+			SharedPreferences.Editor editor = pref.edit();
+			editor.putString("deviceId", deviceId);
+			editor.commit();
+		}
+		
+		// Load the API
 		aware = new AwareAPI("http://www.bitsofpancake.com:7333", deviceId);
+		
+		// Register the device
+		Location location = new Location(0.0, 0.0);
 		Device d = new Device(deviceId, registrationId, location);
 		aware.registerDevice(d);
 		
-		Report x = new Report(location, 0, null, deviceId, "He stole my kidney");
+		AwareAPI.ReportsCallback cb = new AwareAPI.ReportsCallback() {
+			public void handler(Reports reports) {
+				
+				
+			}
+		};
+		reports = new ReportStore(aware, cb, this);
+		
+		// test code below
+		Report x = new Report(location, "He stole my kidney");
 		AwareAPI.ReportAddedCallback cb2 = new AwareAPI.ReportAddedCallback() {
 			public void handler() {
 				// This code will get called when the report is successfully added
@@ -41,29 +77,18 @@ public class MainActivity extends ListActivity implements OnClickListener{
 		}; 
 		aware.addReport(x, cb2); 
 		
-		x = new Report(location, 1, null, deviceId, "He stole my muffin");
+		x = new Report(location, "He stole my muffin");
 		cb2 = new AwareAPI.ReportAddedCallback() {
 			public void handler() {
 				// This code will get called when the report is successfully added
 			}
 		}; 
-		aware.addReport(x, cb2); 
+		aware.addReport(x, cb2);
 		 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
         flipper1 = (ViewFlipper) findViewById(R.id.viewFlipper1);
 		flipper2 = (ViewFlipper) findViewById(R.id.viewFlipper2);
-		
-		SimpleAdapter adapter = new SimpleAdapter(
-        	this,
-        	list,
-        	R.layout.crowview,
-        	new String[] {"title","author","price"},
-        	new int[] {R.id.text1,R.id.text2, R.id.text3}
-        );     
-        populateList();
-        
-        setListAdapter(adapter);  
 	}
 	
 	public void onClick(View view)
@@ -73,57 +98,6 @@ public class MainActivity extends ListActivity implements OnClickListener{
 		
 	}
 
-	private void populateList() {
-    	HashMap<String,String> map = new HashMap<String,String>();
-    	map.put("title",
-	"Programming Android ");
-    	map.put("author", " Zigurd Mednieks..");
-    	map.put("price", "$44.99");
-    	list.add(map);
-    	map = new HashMap<String,String>();
-    	map.put("title",
-    "The Android Developer's Cookbook: Building Applications with the Android SDK ");
-    	map.put("author", 
-	"James Steele and Nelson To ");
-    	map.put("price", "$44.99");
-    	list.add(map);
-    	map = new HashMap<String,String>();
-    	map.put("title","Pro Android 3 ");
-    	map.put("author", "Satya Komatineni, Dave MacLean and Sayed Hashimi ");
-    	map.put("price", "$49.99");
-    	list.add(map);
-    	map = new HashMap<String,String>();
-    	map.put("title",
-    "Beginning Android Application Development (Wrox Programmer to Programmer) ");
-    	map.put("author", "Wei Meng Lee");
-    	map.put("price", "$39.99");
-    	list.add(map);
-    	map = new HashMap<String,String>();
-    	map.put("title",
-    			"Learning Android");
-    	map.put("author", "Marko Gargenta");
-    	map.put("price", "$34.99");
-    	list.add(map);
-    	map = new HashMap<String,String>();
-    	map.put("title","Android for Programmers: An App-Driven Approach");
-    	map.put("author", "Paul J. Deitel, Harvey M. Deitel, ...");
-    	map.put("price", "$44.99");
-    	list.add(map);
-    	map = new HashMap<String,String>();
-    	map.put("title",
-    			"Hello, Android: Introducing Google's Mobile Development Platform");
-    	map.put("author", 
-    			" Ed Burnette");
-    	map.put("price", "$34.99");
-    	list.add(map);
-    	map = new HashMap<String,String>();
-    	map.put("title",
-    			"Beginning Android Games");
-    	map.put("author", 
-    			"Mario Zechner");
-    	map.put("price", "$39.99");
-    	list.add(map);
-    	}
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main, menu);

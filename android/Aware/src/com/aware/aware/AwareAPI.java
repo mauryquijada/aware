@@ -33,11 +33,9 @@ public class AwareAPI {
 	public void requestReports(final ReportsCallback cb) {
 		ServerMessenger.Callback scb = new ServerMessenger.Callback() {
 			public void handler(String s) {
-				ArrayList<Report> reports = new ArrayList<Report>();
+				Reports reports = new Reports();
 				try {
-					JSONArray jsonReports = new JSONArray(s);
-					for (int i = 0; i < jsonReports.length(); i++)
-						reports.add(new Report(jsonReports.getJSONObject(i)));
+					reports = new Reports(new JSONArray(s));
 				} catch (JSONException e) {
 					
 				} finally {
@@ -54,7 +52,7 @@ public class AwareAPI {
 	}
 	
 	public interface ReportsCallback {
-		public void handler(ArrayList<Report> reports);
+		public void handler(Reports reports);
 	}
 	
 }
