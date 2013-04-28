@@ -20,8 +20,7 @@ public class MainActivity extends ListActivity implements OnClickListener{
 	ViewFlipper flipper2;
 	
 	AwareAPI aware;
-	public ArrayList<HashMap<String,String>> list = 
-			new ArrayList<HashMap<String,String>>();
+	ReportStore reports;
 
 	
     public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +32,15 @@ public class MainActivity extends ListActivity implements OnClickListener{
 		Device d = new Device(deviceId, registrationId, location); 
 		aware.registerDevice(d);
 		
+		AwareAPI.ReportsCallback cb = new AwareAPI.ReportsCallback() {
+			public void handler(Reports reports) {
+				
+				
+			}
+		};		
+		reports = new ReportStore(aware, cb, this);
+		
+		// test code below
 		Report x = new Report(location, "He stole my kidney");
 		AwareAPI.ReportAddedCallback cb2 = new AwareAPI.ReportAddedCallback() {
 			public void handler() {
@@ -76,20 +84,11 @@ public class MainActivity extends ListActivity implements OnClickListener{
 	private void populateList() {
     	
     	AwareAPI.ReportsCallback cb1 = new AwareAPI.ReportsCallback() {
-    		public void handler(ArrayList<Report> reports) {
-    			
-    			HashMap<String,String> map = new HashMap<String,String>();
-    			for(int i = 0; i < reports.size(); i++)
-    			{
-    				map = new HashMap<String,String>();
-    				Report report = reports.get(i);
-    				map.put("description", report.description);
-			    	map.put("time", "" + report.time);
-			    	list.add(map);
-    			}
-		    	
-    			// This code will get called when the reports are available
-    		}
+    		
+			public void handler(Reports reports) {
+				// TODO Auto-generated method stub
+				
+			}
     	};
     	aware.requestReports(cb1);
     	}
