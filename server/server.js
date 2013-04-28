@@ -87,7 +87,7 @@ http.createServer(function (req, res) {
 			if (req.method == 'GET') {
 				console.log(deviceId + ': listing report');
 				return r200(JSON.stringify(reports.filter(function (report) {
-					return distance(report['location'], devices[deviceId]['location']) < settings['location_threshold_general'];
+					return distance(report.location, devices[deviceId].location) < settings['location_threshold_general'];
 					// TODO: remove sensitive information and filter by time
 				})));
 			}
@@ -114,7 +114,7 @@ http.createServer(function (req, res) {
 					// Notify clients.
 					var notifiees = [];
 					for (var device in devices)
-						if (distance(report['location'], devices[device]['location']) < settings['location_threshold_general'] && device != deviceId)
+						if (devices[device].registrationId && distance(report.location, devices[device].location) < settings['location_threshold_general'] && device != deviceId)
 							notifiees.push(devices[device].registrationId);
 					notify(notifiees, report);
 					
@@ -134,7 +134,7 @@ http.createServer(function (req, res) {
 						return r400('Invalid device');
 					}
 					
-					if (!isValidLocation(device.location) || !device.registration_id)
+					if (!isValidLocation(device.location))
 						return r400('Invalid device registration');
 					
 					console.log(deviceId + ': adding device', device);
