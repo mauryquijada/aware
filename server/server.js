@@ -98,11 +98,11 @@ http.createServer(function (req, res) {
 					try {
 						report = JSON.parse(report);
 					} catch (e) {
-						return r400('Invalid report', report);
+						return r400('Invalid report ' + report);
 					}
 					
 					if (!report.description || !isValidLocation(report.location))
-						return r400('Invalid report', report);
+						return r400('Invalid report ' + report);
 						
 					report.id = deviceId + Date.now();
 					report.time = Date.now();
@@ -110,6 +110,13 @@ http.createServer(function (req, res) {
 					
 					console.log(deviceId + ': adding report', report);
 					reports.push(report);
+					
+					// Notify clients.
+					var notifiees = [];
+					for (var device in devices)
+						if (distance(report['location'], devices[device]['location']) < settings['location_threshold_general'] && device != deviceId)
+							notifiees.push(devices[device].registrationId);
+					notify(notifiees, report);
 					
 					return r200('Report successfully added');
 				});
@@ -143,3 +150,27 @@ http.createServer(function (req, res) {
 			return r400('Command not found');
 	}
 }).listen(settings['port']);
+
+function notify(devices, report, time) {
+	var time = time || 2000;
+	https.get({
+		'hostname': 'android.googleapis.com',
+		'path': '/gcm/send',
+		'method': 'POST',
+		'headers': {
+			'Authorization': 'key=' + settings['gcm_api_key'],
+			'Content-type': 'application/json'
+		}
+	}, function (res) {
+		// Exponential backoff.
+		if (res.statusCode >= 500) {
+			setTimeout(function () {
+				notify(devices, report, time * 2);
+			}, time);
+		}
+	}).end(JSON.stringify({
+		'registration_ids': devices,
+		'collapse_key': 'suspicious activity',
+		'data': { 'description': report.description }
+	}));
+};
