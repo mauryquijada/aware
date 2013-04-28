@@ -30,7 +30,7 @@ public class MainActivity extends ListActivity implements OnClickListener{
 		Location location = new Location(0.0,0.0);
 		
 		aware = new AwareAPI("http://www.bitsofpancake.com:7333", deviceId);
-		Device d = new Device(deviceId, registrationId, location);
+		Device d = new Device(deviceId, registrationId, location); 
 		aware.registerDevice(d);
 		
 		Report x = new Report(location, "He stole my kidney");
@@ -47,7 +47,7 @@ public class MainActivity extends ListActivity implements OnClickListener{
 				// This code will get called when the report is successfully added
 			}
 		}; 
-		aware.addReport(x, cb2); 
+		aware.addReport(x, cb2);
 		 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
@@ -58,8 +58,8 @@ public class MainActivity extends ListActivity implements OnClickListener{
         	this,
         	list,
         	R.layout.crowview,
-        	new String[] {"title","author","price"},
-        	new int[] {R.id.text1,R.id.text2, R.id.text3}
+        	new String[] {"description","time"},
+        	new int[] {R.id.list_element_description,R.id.list_element_time}
         );     
         populateList();
         
@@ -74,55 +74,24 @@ public class MainActivity extends ListActivity implements OnClickListener{
 	}
 
 	private void populateList() {
-    	HashMap<String,String> map = new HashMap<String,String>();
-    	map.put("title",
-	"Programming Android ");
-    	map.put("author", " Zigurd Mednieks..");
-    	map.put("price", "$44.99");
-    	list.add(map);
-    	map = new HashMap<String,String>();
-    	map.put("title",
-    "The Android Developer's Cookbook: Building Applications with the Android SDK ");
-    	map.put("author", 
-	"James Steele and Nelson To ");
-    	map.put("price", "$44.99");
-    	list.add(map);
-    	map = new HashMap<String,String>();
-    	map.put("title","Pro Android 3 ");
-    	map.put("author", "Satya Komatineni, Dave MacLean and Sayed Hashimi ");
-    	map.put("price", "$49.99");
-    	list.add(map);
-    	map = new HashMap<String,String>();
-    	map.put("title",
-    "Beginning Android Application Development (Wrox Programmer to Programmer) ");
-    	map.put("author", "Wei Meng Lee");
-    	map.put("price", "$39.99");
-    	list.add(map);
-    	map = new HashMap<String,String>();
-    	map.put("title",
-    			"Learning Android");
-    	map.put("author", "Marko Gargenta");
-    	map.put("price", "$34.99");
-    	list.add(map);
-    	map = new HashMap<String,String>();
-    	map.put("title","Android for Programmers: An App-Driven Approach");
-    	map.put("author", "Paul J. Deitel, Harvey M. Deitel, ...");
-    	map.put("price", "$44.99");
-    	list.add(map);
-    	map = new HashMap<String,String>();
-    	map.put("title",
-    			"Hello, Android: Introducing Google's Mobile Development Platform");
-    	map.put("author", 
-    			" Ed Burnette");
-    	map.put("price", "$34.99");
-    	list.add(map);
-    	map = new HashMap<String,String>();
-    	map.put("title",
-    			"Beginning Android Games");
-    	map.put("author", 
-    			"Mario Zechner");
-    	map.put("price", "$39.99");
-    	list.add(map);
+    	
+    	AwareAPI.ReportsCallback cb1 = new AwareAPI.ReportsCallback() {
+    		public void handler(ArrayList<Report> reports) {
+    			
+    			HashMap<String,String> map = new HashMap<String,String>();
+    			for(int i = 0; i < reports.size(); i++)
+    			{
+    				map = new HashMap<String,String>();
+    				Report report = reports.get(i);
+    				map.put("description", report.description);
+			    	map.put("time", "" + report.time);
+			    	list.add(map);
+    			}
+		    	
+    			// This code will get called when the reports are available
+    		}
+    	};
+    	aware.requestReports(cb1);
     	}
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
