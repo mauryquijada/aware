@@ -1,6 +1,5 @@
 package com.aware.aware;
 
-
 import org.json.*;
 
 public class Report {
