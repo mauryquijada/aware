@@ -13,7 +13,6 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.params.ClientPNames;
-import org.apache.http.client.params.CookiePolicy;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.params.BasicHttpParams;
@@ -22,12 +21,8 @@ import org.apache.http.params.HttpParams;
 import org.apache.http.protocol.BasicHttpContext;
 import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.util.Log;
-
-import com.google.gson.Gson;
 
 public class ServerMessager
 {
@@ -51,26 +46,8 @@ public class ServerMessager
 		webServiceUrl = serviceName;
 	}
 
-	public String sendItem(String methodName, Map<String, Object> params)
-	{
-		JSONObject jsonObject = new JSONObject();
-
-		for (Map.Entry<String, Object> param : params.entrySet()){
-			try {
-				jsonObject.put(param.getKey(), param.getValue());
-			} 
-			catch (JSONException e) {
-				Log.e("Groshie", "JSONException : "+e);
-			}
-		}
-
-		return sendItem(methodName,  jsonObject.toString(), "application/json");
-	}
-
-	private String sendItem(String methodName, String data, String contentType) {
+	public String sendItem(String methodName, String data, String contentType, String deviceID) {
 		ret = null;
-
-		httpClient.getParams().setParameter(ClientPNames.COOKIE_POLICY, CookiePolicy.RFC_2109);
 
 		httpPost = new HttpPost(webServiceUrl + methodName);
 		response = null;
@@ -78,6 +55,7 @@ public class ServerMessager
 		StringEntity tmp = null;        
 
 		//httpPost.setHeader("User-Agent", "SET YOUR USER AGENT STRING HERE");
+		httpPost.setHeader("Device", deviceID);
 		httpPost.setHeader("Accept", 
 				"text/html,application/xml,application/xhtml+xml,text/html;q=0.9,text/plain;q=0.8,image/png,*/*;q=0.5");
 
@@ -110,30 +88,12 @@ public class ServerMessager
 		return ret;
 	}
 
-	public String returnItem(String methodName, Map<String, String> params) {
-		String getUrl = webServiceUrl + methodName;
+	public String returnReport(String deviceID) {
+		String getUrl = webServiceUrl + "/report";
 
-		int i = 0;
-		for (Map.Entry<String, String> param : params.entrySet())
-		{
-			if(i == 0){
-				getUrl += "?";
-			}
-			else{
-				getUrl += "&";
-			}
-
-			try {
-				getUrl += param.getKey() + "=" + URLEncoder.encode(param.getValue(),"UTF-8");
-			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-
-			i++;
-		}
-
-		httpGet = new HttpGet(getUrl);  
+		httpGet = new HttpGet(getUrl);
+		httpGet.setHeader("Device", deviceID);
+		
 		Log.e("WebGetURL: ",getUrl);
 
 		try {
@@ -150,15 +110,6 @@ public class ServerMessager
 		}
 
 		return ret;
-	}
-
-	public static JSONObject Object(Object o) {
-		try {
-			return new JSONObject(new Gson().toJson(o));
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return null;
 	}
 
 	public InputStream getHttpStream(String urlString) throws IOException {
@@ -188,10 +139,6 @@ public class ServerMessager
 		} // end try-catch
 
 		return in;     
-	}
-
-	public void clearCookies() {
-		httpClient.getCookieStore().clear();
 	}
 
 	public void abort() {
