@@ -39,7 +39,7 @@ function clean() {
 		}
 	
 	var i = 0;
-	while (t - reports[i]['time'] > settings['report_timeout'])
+	while (reports[i] && d - reports[i]['time'] > settings['report_timeout'])
 		i++;
 	reports = reports.slice(i);
 }
@@ -58,19 +58,19 @@ http.createServer(function (req, res) {
 	}
 	function postData(fn) {
 		var body = '';
-        request.on('data', function (data) {
+        req.on('data', function (data) {
             body += data;
         });
-        request.on('end', function () {
+        req.on('end', function () {
 			fn(body);
         });
 	}
-
+	
 	// No device given.
-	if (!req.headers['Device'])
+	if (!req.headers['device'])
 		return r400('No device ID!');
 
-	var deviceId = message.headers['Device'];
+	var deviceId = req.headers['device'];
 	
 	// Clean up stale data with a certain probability
 	if (Math.random() < 1 / deviceLength)
@@ -80,7 +80,7 @@ http.createServer(function (req, res) {
 		case '/report':
 		
 			// Need to be a valid user if requesting reports
-			if (devices[deviceId])
+			if (!devices[deviceId])
 				return r400('Unregistered device ID.');
 				
 			// List the reports
@@ -95,15 +95,14 @@ http.createServer(function (req, res) {
 			// Add the report
 			else if (req.method == 'POST')
 				return postData(function (report) {
-				
 					try {
 						report = JSON.parse(report);
 					} catch (e) {
-						return r400('Invalid report');
+						return r400('Invalid report', report);
 					}
 					
-					if (!report.data || !isValidLocation(report.location))
-						return r400('Invalid report');
+					if (!report.description || !isValidLocation(report.location))
+						return r400('Invalid report', report);
 						
 					report.id = deviceId + Date.now();
 					report.time = Date.now();
