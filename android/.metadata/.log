@@ -527,3 +527,457 @@ java.lang.NullPointerException
 	at org.eclipse.core.internal.resources.Workspace.run(Workspace.java:2344)
 	at org.eclipse.ltk.internal.ui.refactoring.WorkbenchRunnableAdapter.run(WorkbenchRunnableAdapter.java:87)
 	at org.eclipse.jface.operation.ModalContext$ModalContextThread.run(ModalContext.java:121)
+
+!ENTRY org.eclipse.core.jobs 4 2 2013-04-27 20:32:17.782
+!MESSAGE An internal error occurred during: "Launching Aware".
+!STACK 0
+java.lang.NullPointerException
+	at com.android.ide.eclipse.adt.internal.launch.AndroidLaunchController.launch(AndroidLaunchController.java:422)
+	at com.android.ide.eclipse.adt.internal.launch.LaunchConfigDelegate.doLaunch(LaunchConfigDelegate.java:322)
+	at com.android.ide.eclipse.adt.internal.launch.LaunchConfigDelegate.launch(LaunchConfigDelegate.java:238)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:43:08.436
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:43:08.446
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:43:08.453
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:43:08.461
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:43:08.468
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:43:08.474
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:43:08.481
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:43:08.488
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:43:13.302
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:43:19.793
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:43:22.753
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:43:24.043
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:43:24.231
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:43:24.411
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:43:31.206
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:43:41.973
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:43:42.580
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:43:42.744
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:43:42.916
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:43:43.080
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:43:43.244
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:43:56.346
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:43:56.839
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:43:57.010
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:43:57.182
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:43:57.362
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:43:57.542
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:43:57.714
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:44:43.650
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:45:25.352
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:45:36.635
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:45:36.642
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:45:36.648
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:45:36.654
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:45:36.661
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:45:36.668
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:45:36.675
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:45:36.681
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:45:42.527
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:45:44.655
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:45:45.142
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:45:45.282
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:45:45.438
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:45:45.586
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:45:45.741
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:45:45.905
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:51:54.049
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:51:54.058
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:51:54.064
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:51:54.072
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:51:54.081
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:51:54.087
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:51:54.095
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:51:54.102
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:52:02.842
+!MESSAGE Failed to create L/Aware/res/layout/flipper_layout.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:52:03.330
+!MESSAGE Failed to create L/Aware/res/layout/flipper_layout.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:52:03.578
+!MESSAGE Failed to create L/Aware/res/layout/flipper_layout.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:52:03.747
+!MESSAGE Failed to create L/Aware/res/layout/flipper_layout.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:52:03.907
+!MESSAGE Failed to create L/Aware/res/layout/flipper_layout.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:52:04.082
+!MESSAGE Failed to create L/Aware/res/layout/flipper_layout.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:52:04.242
+!MESSAGE Failed to create L/Aware/res/layout/flipper_layout.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:52:04.411
+!MESSAGE Failed to create L/Aware/res/layout/flipper_layout.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:52:07.161
+!MESSAGE Failed to create L/Aware/res/layout/flipper_layout.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:52:07.317
+!MESSAGE Failed to create L/Aware/res/layout/flipper_layout.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:52:07.473
+!MESSAGE Failed to create L/Aware/res/layout/flipper_layout.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:52:07.645
+!MESSAGE Failed to create L/Aware/res/layout/flipper_layout.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:52:07.793
+!MESSAGE Failed to create L/Aware/res/layout/flipper_layout.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:52:07.965
+!MESSAGE Failed to create L/Aware/res/layout/flipper_layout.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:52:08.105
+!MESSAGE Failed to create L/Aware/res/layout/flipper_layout.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:52:46.739
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:52:46.746
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:52:46.755
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:52:46.761
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:52:46.768
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:52:46.776
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:52:46.784
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:52:46.794
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:52:49.183
+!MESSAGE Failed to create L/Aware/res/layout/sdsgfh.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:52:49.776
+!MESSAGE Failed to create L/Aware/res/layout/sdsgfh.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:52:49.979
+!MESSAGE Failed to create L/Aware/res/layout/sdsgfh.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:52:50.167
+!MESSAGE Failed to create L/Aware/res/layout/sdsgfh.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:52:50.331
+!MESSAGE Failed to create L/Aware/res/layout/sdsgfh.xml: missing root element
+!SESSION 2013-04-27 20:53:09.747 -----------------------------------------------
+eclipse.buildId=M20120914-1800
+java.version=1.7.0_05
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY org.eclipse.jface 2 0 2013-04-27 20:53:39.625
+!MESSAGE Keybinding conflicts occurred.  They may interfere with normal accelerator operation.
+!SUBENTRY 1 org.eclipse.jface 2 0 2013-04-27 20:53:39.625
+!MESSAGE A conflict occurred for CTRL+SHIFT+T:
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(org.eclipse.jdt.ui.navigate.open.type,Open Type,
+		Open a type in a Java editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@196cceee,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+Binding(CTRL+SHIFT+T,
+	ParameterizedCommand(Command(ar.com.tadp.prolog.ui.navigate.open.type,Open Prolog Module,
+		Open Prolog Module in a Prolog Editor,
+		Category(org.eclipse.ui.category.navigate,Navigate,null,true),
+		org.eclipse.ui.internal.MakeHandlersGo@3685784c,
+		,,true),null),
+	org.eclipse.ui.defaultAcceleratorConfiguration,
+	org.eclipse.ui.contexts.window,,,system)
+
+!ENTRY org.eclipse.ui 2 2 2013-04-27 20:54:22.553
+!MESSAGE Invalid property category path: ValidationPropertiesPage (bundle: org.eclipse.wst.xml.ui, propertyPage: org.eclipse.wst.xml.ui.propertyPage.project.validation)
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:54:26.764
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:54:26.772
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:54:26.780
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:54:26.790
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:54:26.798
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:54:26.806
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:54:26.814
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 1 0 2013-04-27 20:54:26.823
+!MESSAGE NewXmlFile wizard: no platform target for project Aware
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:54:33.681
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:54:34.288
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:54:34.476
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:54:34.648
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:54:34.819
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:54:35.000
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:55:09.844
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:55:10.361
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:55:10.545
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:55:10.729
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:55:10.897
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:55:11.082
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:55:11.258
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:55:11.618
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:55:12.265
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:55:12.545
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 20:55:15.373
+!MESSAGE Failed to create L/Aware/res/layout/flipper.xml: missing root element
+
+!ENTRY org.eclipse.ui 4 0 2013-04-27 20:58:31.862
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.PaletteControl.showMenu(PaletteControl.java:1225)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.PaletteControl.access$0(PaletteControl.java:1211)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.PaletteControl$PalettePage$1.widgetSelected(PaletteControl.java:176)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:248)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4169)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3758)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1029)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:923)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:86)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:588)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:543)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:124)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:353)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:180)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:629)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+
+!ENTRY org.eclipse.ui 4 0 2013-04-27 20:58:32.700
+!MESSAGE Unhandled event loop exception
+!STACK 0
+java.lang.NullPointerException
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.PaletteControl.showMenu(PaletteControl.java:1225)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.PaletteControl.access$0(PaletteControl.java:1211)
+	at com.android.ide.eclipse.adt.internal.editors.layout.gle2.PaletteControl$PalettePage$1.widgetSelected(PaletteControl.java:176)
+	at org.eclipse.swt.widgets.TypedListener.handleEvent(TypedListener.java:248)
+	at org.eclipse.swt.widgets.EventTable.sendEvent(EventTable.java:84)
+	at org.eclipse.swt.widgets.Widget.sendEvent(Widget.java:1053)
+	at org.eclipse.swt.widgets.Display.runDeferredEvents(Display.java:4169)
+	at org.eclipse.swt.widgets.Display.readAndDispatch(Display.java:3758)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine$9.run(PartRenderingEngine.java:1029)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.e4.ui.internal.workbench.swt.PartRenderingEngine.run(PartRenderingEngine.java:923)
+	at org.eclipse.e4.ui.internal.workbench.E4Workbench.createAndRunUI(E4Workbench.java:86)
+	at org.eclipse.ui.internal.Workbench$5.run(Workbench.java:588)
+	at org.eclipse.core.databinding.observable.Realm.runWithDefault(Realm.java:332)
+	at org.eclipse.ui.internal.Workbench.createAndRunWorkbench(Workbench.java:543)
+	at org.eclipse.ui.PlatformUI.createAndRunWorkbench(PlatformUI.java:149)
+	at org.eclipse.ui.internal.ide.application.IDEApplication.start(IDEApplication.java:124)
+	at org.eclipse.equinox.internal.app.EclipseAppHandle.run(EclipseAppHandle.java:196)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.runApplication(EclipseAppLauncher.java:110)
+	at org.eclipse.core.runtime.internal.adaptor.EclipseAppLauncher.start(EclipseAppLauncher.java:79)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:353)
+	at org.eclipse.core.runtime.adaptor.EclipseStarter.run(EclipseStarter.java:180)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at org.eclipse.equinox.launcher.Main.invokeFramework(Main.java:629)
+	at org.eclipse.equinox.launcher.Main.basicRun(Main.java:584)
+	at org.eclipse.equinox.launcher.Main.run(Main.java:1438)
+	at org.eclipse.equinox.launcher.Main.main(Main.java:1414)
+
+!ENTRY com.android.ide.eclipse.adt 4 0 2013-04-27 21:08:49.114
+!MESSAGE No command output when running: 'am start -n com.aware.aware/com.aware.aware.MainActivity -a android.intent.action.MAIN -c android.intent.category.LAUNCHER' on device emulator-5554
+!STACK 0
+com.android.ddmlib.ShellCommandUnresponsiveException
+	at com.android.ddmlib.AdbHelper.executeRemoteCommand(AdbHelper.java:408)
+	at com.android.ddmlib.Device.executeShellCommand(Device.java:453)
+	at com.android.ide.eclipse.adt.internal.launch.ActivityLaunchAction.doLaunchAction(ActivityLaunchAction.java:75)
+	at com.android.ide.eclipse.adt.internal.launch.AndroidLaunchController.doLaunchAction(AndroidLaunchController.java:1272)
+	at com.android.ide.eclipse.adt.internal.launch.AndroidLaunchController.launchApp(AndroidLaunchController.java:1256)
+	at com.android.ide.eclipse.adt.internal.launch.AndroidLaunchController.simpleLaunch(AndroidLaunchController.java:901)
+	at com.android.ide.eclipse.adt.internal.launch.AndroidLaunchController.continueLaunch(AndroidLaunchController.java:743)
+	at com.android.ide.eclipse.adt.internal.launch.AndroidLaunchController.launch(AndroidLaunchController.java:560)
+	at com.android.ide.eclipse.adt.internal.launch.LaunchConfigDelegate.doLaunch(LaunchConfigDelegate.java:322)
+	at com.android.ide.eclipse.adt.internal.launch.LaunchConfigDelegate.launch(LaunchConfigDelegate.java:238)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:855)
+	at org.eclipse.debug.internal.core.LaunchConfiguration.launch(LaunchConfiguration.java:704)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin.buildAndLaunch(DebugUIPlugin.java:1047)
+	at org.eclipse.debug.internal.ui.DebugUIPlugin$8.run(DebugUIPlugin.java:1251)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:53)
