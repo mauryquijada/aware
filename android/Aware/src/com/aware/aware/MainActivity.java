@@ -33,7 +33,7 @@ public class MainActivity extends ListActivity implements OnClickListener{
 		Device d = new Device(deviceId, registrationId, location);
 		aware.registerDevice(d);
 		
-		Report x = new Report(location, 0, null, deviceId, "He stole my kidney");
+		Report x = new Report(location, "He stole my kidney");
 		AwareAPI.ReportAddedCallback cb2 = new AwareAPI.ReportAddedCallback() {
 			public void handler() {
 				// This code will get called when the report is successfully added
@@ -41,7 +41,7 @@ public class MainActivity extends ListActivity implements OnClickListener{
 		}; 
 		aware.addReport(x, cb2); 
 		
-		x = new Report(location, 1, null, deviceId, "He stole my muffin");
+		x = new Report(location, "He stole my muffin");
 		cb2 = new AwareAPI.ReportAddedCallback() {
 			public void handler() {
 				// This code will get called when the report is successfully added

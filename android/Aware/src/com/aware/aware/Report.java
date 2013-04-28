@@ -32,7 +32,7 @@ public class Report {
 		this(new JSONObject(data));
 	}
 	
-	public String toString()
+	public JSONObject toJSON() 
 	{
 		JSONObject json = new JSONObject();
 		try {
@@ -42,8 +42,12 @@ public class Report {
 			json.put("device", device);
 			json.put("description", description);
 		} catch (JSONException e) {}
-		
-		return json.toString();
+		return json;	
+	}
+	
+	public String toString()
+	{
+		return toJSON().toString();
 	}
 	
 	
