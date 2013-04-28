@@ -37,8 +37,8 @@ public class MainActivity extends ListActivity implements OnClickListener{
 		AwareAPI.ReportAddedCallback cb2 = new AwareAPI.ReportAddedCallback() {
 			public void handler() {
 				// This code will get called when the report is successfully added
-			}
-		};
+			} 
+		}; 
 		aware.addReport(x, cb2); 
 		
 		x = new Report(location, 1, null, deviceId, "He stole my muffin");
@@ -46,9 +46,9 @@ public class MainActivity extends ListActivity implements OnClickListener{
 			public void handler() {
 				// This code will get called when the report is successfully added
 			}
-		};
-		aware.addReport(x, cb2);
-		
+		}; 
+		aware.addReport(x, cb2); 
+		 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
         flipper1 = (ViewFlipper) findViewById(R.id.viewFlipper1);
