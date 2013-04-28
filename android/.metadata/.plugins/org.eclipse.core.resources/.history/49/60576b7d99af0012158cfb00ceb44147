@@ -1,6 +1,6 @@
 package com.aware.aware;
 
-
+import com.example.aware.R;
 
 import android.os.Bundle;
 import android.app.Activity;
