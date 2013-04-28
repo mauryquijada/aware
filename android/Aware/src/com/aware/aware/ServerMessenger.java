@@ -6,14 +6,13 @@ import android.os.AsyncTask;
 
 public class ServerMessenger extends AsyncTask<ServerRequest, Integer, String> {
 
-	
 	private Callback cb;
-	private String prefix;
+	private String domain;
 	private String device;
 	private boolean failed = false;
 	
-	public ServerMessenger(String prefix, Callback cb, String device) {
-		this.prefix = prefix;
+	public ServerMessenger(String domain, Callback cb, String device) {
+		this.domain = domain;
 		this.cb = cb;
 		this.device = device;
 	}
@@ -23,14 +22,16 @@ public class ServerMessenger extends AsyncTask<ServerRequest, Integer, String> {
 		HttpURLConnection connection = null;
 		
 		try {
-			connection = (HttpURLConnection) (new URL(prefix + "/" + request.verb)).openConnection();
+			connection = (HttpURLConnection) (new URL(domain + "/" + request.verb)).openConnection();
 			connection.setDoOutput(true);
 			connection.setRequestProperty("Device", device);
 			connection.setRequestMethod(request.method);
 			
-			OutputStream out = connection.getOutputStream();
-			out.write(request.data.getBytes());
-			
+			if (request.data != null) {
+				OutputStream out = connection.getOutputStream();
+				out.write(request.data.getBytes());
+			}
+	
 			// Failed. :[
 			if (connection.getResponseCode() / 100 != 2) {
 				failed = true;
@@ -62,6 +63,6 @@ public class ServerMessenger extends AsyncTask<ServerRequest, Integer, String> {
 	}
 	
 	public interface Callback {
-		void handler(String data);
+		public void handler(String data);
 	}
 }

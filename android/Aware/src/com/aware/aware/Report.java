@@ -37,15 +37,18 @@ public class Report {
 		this.description = description;
 	}
 	
-	public Report(String data) throws JSONException
+	public Report(JSONObject json) throws JSONException
 	{
-		JSONObject json = new JSONObject(data);
-		
 		this.location = new Location((JSONArray) json.get("location"));
 		this.time = (long) json.getLong("time");
 		this.id = (String) json.get("id");
 		this.device = (String) json.getString("device");
 		this.description = (String) json.getString("description");
+	}
+	
+	public Report(String data) throws JSONException
+	{
+		this(new JSONObject(data));
 	}
 	
 	public String toString()

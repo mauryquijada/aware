@@ -21,10 +21,7 @@ public class Device {
 			json.put("id", id);
 			json.put("registration_id", registrationId);
 			json.put("location", location.toJSON());
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		
+		} catch (JSONException e) {}
 		return json.toString();
 	}
 
