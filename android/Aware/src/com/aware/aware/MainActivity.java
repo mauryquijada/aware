@@ -122,3 +122,33 @@ public class MainActivity extends ListActivity implements OnClickListener{
         }
     }
 }
+
+/* 
+	String deviceId = // an id unique to the device
+	AwareAPI aware = new AwareAPI("http://www.bitsofpancake.com:7333", deviceId);
+
+
+	// Request reports.
+	AwareAPI.ReportsCallback cb1 = new AwareAPI.ReportsCallback() {
+		public void handler(ArrayList<Report> reports) {
+			// This code will get called when the reports are available
+		}
+	};
+	aware.getReports(cb1);
+
+
+	// Add a report.
+	Report x = new Report();
+	AwareAPI.ReportAddedCallback cb2 = new AwareAPI.ReportAddedCallback() {
+		public void handler() {
+			// This code will get called when the report is successfully added
+		}
+	};
+	aware.addReport(x, cb2);
+
+
+	// Register this device's location.
+	String registrationId = // registration id from Google Cloud Messaging
+	Location location = // current location
+	Device d = new Device(deviceId, registrationId, location);
+*/
